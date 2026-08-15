@@ -53,6 +53,7 @@ nav:
     - Componentes: referencia/componentes.md
     - Catálogo: referencia/catalogo.md
     - Exemplos: referencia/exemplos.md
+    - Exemplo Fullstack: referencia/fullstack-example.md
   - Contribuindo: contributing.md
 
 plugins:
