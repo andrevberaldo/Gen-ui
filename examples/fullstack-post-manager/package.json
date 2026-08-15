@@ -1,0 +1,29 @@
+{
+  "name": "a2ui-fullstack-post-manager",
+  "version": "0.0.1",
+  "description": "Exemplo fullstack completo com A2UI, Langchain, React e Material UI",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "dev": "npm run dev:backend & npm run dev:frontend",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "preview": "cd frontend && npm run preview"
+  },
+  "keywords": [
+    "A2UI",
+    "protocol",
+    "agent",
+    "langchain",
+    "react",
+    "material-ui",
+    "fullstack"
+  ],
+  "author": "Your Name",
+  "license": "Apache-2.0",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ]
+}

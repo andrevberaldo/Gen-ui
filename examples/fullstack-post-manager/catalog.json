@@ -1,0 +1,181 @@
+{
+  "catalogs": {
+    "default": {
+      "components": {
+        "text": {
+          "description": "Componente de texto",
+          "properties": {
+            "content": {
+              "type": "string",
+              "description": "Conteúdo do texto"
+            },
+            "variant": {
+              "type": "string",
+              "enum": ["h1", "h2", "h3", "h4", "h5", "h6", "body1", "body2", "caption"],
+              "description": "Variante de tipografia"
+            }
+          }
+        },
+        "button": {
+          "description": "Um botão clicável",
+          "properties": {
+            "label": {
+              "type": "string",
+              "description": "Texto do botão"
+            },
+            "disabled": {
+              "type": "boolean",
+              "description": "Desabilitar botão"
+            },
+            "variant": {
+              "type": "string",
+              "enum": ["contained", "outlined", "text"],
+              "description": "Variante do botão"
+            },
+            "onClick": {
+              "type": "action",
+              "description": "Ação ao clicar"
+            }
+          }
+        },
+        "card": {
+          "description": "Um card com conteúdo",
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "Título do card"
+            },
+            "subtitle": {
+              "type": "string",
+              "description": "Subtítulo ou autor"
+            },
+            "content": {
+              "type": "string",
+              "description": "Conteúdo principal"
+            },
+            "elevation": {
+              "type": "number",
+              "description": "Nível de sombra"
+            }
+          }
+        },
+        "text-input": {
+          "description": "Campo de entrada de texto",
+          "properties": {
+            "label": {
+              "type": "string",
+              "description": "Label do campo"
+            },
+            "placeholder": {
+              "type": "string",
+              "description": "Placeholder"
+            },
+            "value": {
+              "type": "string",
+              "description": "Valor atual"
+            },
+            "required": {
+              "type": "boolean",
+              "description": "Campo obrigatório"
+            },
+            "onChange": {
+              "type": "action",
+              "description": "Ação ao mudar valor"
+            }
+          }
+        },
+        "loading": {
+          "description": "Indicador de carregamento",
+          "properties": {
+            "message": {
+              "type": "string",
+              "description": "Mensagem de carregamento"
+            }
+          }
+        },
+        "alert": {
+          "description": "Alerta/notificação",
+          "properties": {
+            "message": {
+              "type": "string",
+              "description": "Mensagem do alerta"
+            },
+            "severity": {
+              "type": "string",
+              "enum": ["success", "error", "warning", "info"],
+              "description": "Tipo de alerta"
+            }
+          }
+        },
+        "list": {
+          "description": "Lista de items",
+          "properties": {
+            "items": {
+              "type": "array",
+              "description": "Items da lista"
+            },
+            "itemTemplate": {
+              "type": "object",
+              "description": "Template para cada item"
+            }
+          }
+        },
+        "container": {
+          "description": "Contêiner para layout",
+          "properties": {
+            "spacing": {
+              "type": "number",
+              "description": "Espaçamento interno"
+            }
+          }
+        }
+      },
+      "functions": {
+        "searchPosts": {
+          "description": "Buscar posts por ID ou termo",
+          "parameters": {
+            "query": {
+              "type": "string",
+              "description": "ID do post ou termo de busca"
+            }
+          }
+        },
+        "updatePost": {
+          "description": "Atualizar um post existente",
+          "parameters": {
+            "postId": {
+              "type": "number",
+              "description": "ID do post"
+            },
+            "title": {
+              "type": "string",
+              "description": "Novo título"
+            },
+            "body": {
+              "type": "string",
+              "description": "Novo corpo do post"
+            }
+          }
+        },
+        "validateEmail": {
+          "description": "Validar se um email é válido",
+          "parameters": {
+            "email": {
+              "type": "string",
+              "description": "Email a validar"
+            }
+          }
+        },
+        "validatePostTitle": {
+          "description": "Validar título do post",
+          "parameters": {
+            "title": {
+              "type": "string",
+              "description": "Título a validar"
+            }
+          }
+        }
+      }
+    }
+  }
+}
