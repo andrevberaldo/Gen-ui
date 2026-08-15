@@ -1,0 +1,87 @@
+site_name: A2UI - Documentação em Português
+site_description: Documentação completa do protocolo A2UI (Agent-to-UI) traduzida para português
+site_url: https://andrevberaldo.github.io/Gen-ui/
+repo_url: https://github.com/andrevberaldo/Gen-ui
+repo_name: Gen-ui
+edit_uri: edit/claude/mkdocs-portuguese-docs-l9rysy/docs/
+
+theme:
+  name: material
+  language: pt
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.indexes
+    - toc.integrate
+    - content.tabs.link
+    - content.code.copy
+    - search.suggest
+    - search.highlight
+  palette:
+    - scheme: light
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/weather-night
+        name: Ativar modo escuro
+    - scheme: dark
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/weather-sunny
+        name: Ativar modo claro
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+nav:
+  - Home: index.md
+  - Início Rápido: quickstart.md
+  - Guias:
+    - Introdução: guias/introducao.md
+    - O que é A2UI?: guias/o-que-e-a2ui.md
+    - Conceitos Principais: guias/conceitos-principais.md
+    - Arquitetura: guias/arquitetura.md
+  - Documentação:
+    - Protocolo v1.0: documentacao/protocolo-v1.0.md
+    - Funções Personalizadas: documentacao/funcoes-personalizadas.md
+    - Guia de Implementação: documentacao/guia-implementacao.md
+    - Guia de Evolução: documentacao/guia-evolucao.md
+  - Referência:
+    - Componentes: referencia/componentes.md
+    - Catálogo: referencia/catalogo.md
+    - Exemplos: referencia/exemplos.md
+  - Contribuindo: contributing.md
+
+plugins:
+  - search:
+      lang: pt
+  - offline
+
+markdown_extensions:
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/a2ui-project/a2ui
+      name: Repositório Original A2UI
+
+copyright: Documentação A2UI traduzida para português - Licença Apache 2.0
