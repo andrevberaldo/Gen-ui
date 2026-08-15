@@ -833,6 +833,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#diagrama-de-sequencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagrama de Sequência
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#1-criar-superficie" class="md-nav__link">
     <span class="md-ellipsis">
       1. Criar Superfície
@@ -1504,6 +1513,20 @@
   }
 }</code></p>
 <h2 id="fluxo-completo-de-exemplo">Fluxo Completo de Exemplo<a class="headerlink" href="#fluxo-completo-de-exemplo" title="Permanent link">&para;</a></h2>
+<h3 id="diagrama-de-sequencia">Diagrama de Sequência<a class="headerlink" href="#diagrama-de-sequencia" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>sequenceDiagram
+    participant User as 👤 Usuário
+    participant Renderer as 🎨 Renderizador
+    participant Agent as 🤖 Agente
+
+    Agent-&gt;&gt;Renderer: 1. createSurface("search-results")
+    Agent-&gt;&gt;Renderer: 2. updateDataModel("/query", "indianos")
+    Agent-&gt;&gt;Renderer: 3. updateComponents([...])
+    Renderer--&gt;&gt;User: Renderiza UI
+    User-&gt;&gt;Renderer: Clica em resultado
+    Renderer-&gt;&gt;Agent: 4. action("selectResult", {id: 1})
+    Agent-&gt;&gt;Renderer: 5. updateComponents([...])
+    Renderer--&gt;&gt;User: Atualiza UI</code></pre>
 <h3 id="1-criar-superficie">1. Criar Superfície<a class="headerlink" href="#1-criar-superficie" title="Permanent link">&para;</a></h3>
 <p>Agente envia:
 <code>json

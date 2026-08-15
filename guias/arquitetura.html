@@ -1111,32 +1111,34 @@
 <h1 id="arquitetura-de-a2ui">Arquitetura de A2UI<a class="headerlink" href="#arquitetura-de-a2ui" title="Permanent link">&para;</a></h1>
 <p>Uma visão profunda de como os componentes de A2UI trabalham juntos.</p>
 <h2 id="visao-geral-da-arquitetura">Visão Geral da Arquitetura<a class="headerlink" href="#visao-geral-da-arquitetura" title="Permanent link">&para;</a></h2>
-<p><code>┌──────────────────────────────────────────────────────────────┐
-│                    CAMADA DE APLICAÇÃO                       │
-│  (Seu aplicativo - chat, app, dashboard, etc.)              │
-└──────────────────┬───────────────────────────────────────────┘
-                   │
-┌──────────────────▼───────────────────────────────────────────┐
-│                  CAMADA A2UI (PROTOCOLO)                     │
-│  ┌─────────────────────────────────────────────────────────┐ │
-│  │ createSurface, updateComponents, updateDataModel, ...   │ │
-│  └─────────────────────────────────────────────────────────┘ │
-└──────────────────┬───────────────────────────────────────────┘
-                   │
-┌──────────────────▼───────────────────────────────────────────┐
-│                  CAMADA DE TRANSPORTE                        │
-│  (A2A, AG-UI, MCP, WebSocket, etc.)                         │
-└──────────────────┬───────────────────────────────────────────┘
-                   │
-     ┌─────────────┴─────────────┐
-     │                           │
-┌────▼────────────────┐   ┌──────▼──────────────────┐
-│   LADO DO AGENTE    │   │   LADO DO CLIENTE      │
-│  ┌────────────────┐ │   │  ┌──────────────────┐  │
-│  │  LLM (Gemini)  │ │   │  │  Renderizador    │  │
-│  │  JSON Generator│ │   │  │  (Flutter, Web)  │  │
-│  └────────────────┘ │   │  └──────────────────┘  │
-└─────────────────────┘   └──────────────────────┘</code></p>
+<pre class="mermaid"><code>graph TB
+    App["🖥️ CAMADA DE APLICAÇÃO&lt;br/&gt;(Chat, App, Dashboard)"]
+
+    subgraph A2UILayer ["A2UI (PROTOCOLO)"]
+        Messages["createSurface&lt;br/&gt;updateComponents&lt;br/&gt;updateDataModel&lt;br/&gt;deleteSurface"]
+    end
+
+    subgraph Transport ["CAMADA DE TRANSPORTE"]
+        Trans["A2A | AG-UI | MCP&lt;br/&gt;WebSocket"]
+    end
+
+    subgraph Agent ["LADO DO AGENTE"]
+        LLM["🤖 LLM&lt;br/&gt;(Gemini, Claude)"]
+        JSON["📄 JSON&lt;br/&gt;Generator"]
+    end
+
+    subgraph Client ["LADO DO CLIENTE"]
+        Renderer["🎨 Renderizador&lt;br/&gt;(Flutter, Web, React)"]
+        UI["📱 UI Nativa"]
+    end
+
+    App --&gt; A2UILayer
+    A2UILayer --&gt; Transport
+    Transport --&gt; Agent
+    Transport --&gt; Client
+    LLM --&gt; JSON
+    JSON --&gt; Messages
+    Renderer --&gt; UI</code></pre>
 <h2 id="componentes-da-arquitetura">Componentes da Arquitetura<a class="headerlink" href="#componentes-da-arquitetura" title="Permanent link">&para;</a></h2>
 <h3 id="1-protocolo-a2ui-transport-agnostic">1. Protocolo A2UI (Transport-Agnostic)<a class="headerlink" href="#1-protocolo-a2ui-transport-agnostic" title="Permanent link">&para;</a></h3>
 <p>O núcleo de A2UI define:</p>
