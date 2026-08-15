@@ -4,33 +4,35 @@ Uma visão profunda de como os componentes de A2UI trabalham juntos.
 
 ## Visão Geral da Arquitetura
 
-```
-┌──────────────────────────────────────────────────────────────┐
-│                    CAMADA DE APLICAÇÃO                       │
-│  (Seu aplicativo - chat, app, dashboard, etc.)              │
-└──────────────────┬───────────────────────────────────────────┘
-                   │
-┌──────────────────▼───────────────────────────────────────────┐
-│                  CAMADA A2UI (PROTOCOLO)                     │
-│  ┌─────────────────────────────────────────────────────────┐ │
-│  │ createSurface, updateComponents, updateDataModel, ...   │ │
-│  └─────────────────────────────────────────────────────────┘ │
-└──────────────────┬───────────────────────────────────────────┘
-                   │
-┌──────────────────▼───────────────────────────────────────────┐
-│                  CAMADA DE TRANSPORTE                        │
-│  (A2A, AG-UI, MCP, WebSocket, etc.)                         │
-└──────────────────┬───────────────────────────────────────────┘
-                   │
-     ┌─────────────┴─────────────┐
-     │                           │
-┌────▼────────────────┐   ┌──────▼──────────────────┐
-│   LADO DO AGENTE    │   │   LADO DO CLIENTE      │
-│  ┌────────────────┐ │   │  ┌──────────────────┐  │
-│  │  LLM (Gemini)  │ │   │  │  Renderizador    │  │
-│  │  JSON Generator│ │   │  │  (Flutter, Web)  │  │
-│  └────────────────┘ │   │  └──────────────────┘  │
-└─────────────────────┘   └──────────────────────┘
+```mermaid
+graph TB
+    App["🖥️ CAMADA DE APLICAÇÃO<br/>(Chat, App, Dashboard)"]
+    
+    subgraph A2UILayer ["A2UI (PROTOCOLO)"]
+        Messages["createSurface<br/>updateComponents<br/>updateDataModel<br/>deleteSurface"]
+    end
+    
+    subgraph Transport ["CAMADA DE TRANSPORTE"]
+        Trans["A2A | AG-UI | MCP<br/>WebSocket"]
+    end
+    
+    subgraph Agent ["LADO DO AGENTE"]
+        LLM["🤖 LLM<br/>(Gemini, Claude)"]
+        JSON["📄 JSON<br/>Generator"]
+    end
+    
+    subgraph Client ["LADO DO CLIENTE"]
+        Renderer["🎨 Renderizador<br/>(Flutter, Web, React)"]
+        UI["📱 UI Nativa"]
+    end
+    
+    App --> A2UILayer
+    A2UILayer --> Transport
+    Transport --> Agent
+    Transport --> Client
+    LLM --> JSON
+    JSON --> Messages
+    Renderer --> UI
 ```
 
 ## Componentes da Arquitetura

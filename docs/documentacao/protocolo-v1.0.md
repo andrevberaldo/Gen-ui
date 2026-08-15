@@ -245,6 +245,24 @@ Renderizador solicita ao agente executar uma função.
 
 ## Fluxo Completo de Exemplo
 
+### Diagrama de Sequência
+
+```mermaid
+sequenceDiagram
+    participant User as 👤 Usuário
+    participant Renderer as 🎨 Renderizador
+    participant Agent as 🤖 Agente
+    
+    Agent->>Renderer: 1. createSurface("search-results")
+    Agent->>Renderer: 2. updateDataModel("/query", "indianos")
+    Agent->>Renderer: 3. updateComponents([...])
+    Renderer-->>User: Renderiza UI
+    User->>Renderer: Clica em resultado
+    Renderer->>Agent: 4. action("selectResult", {id: 1})
+    Agent->>Renderer: 5. updateComponents([...])
+    Renderer-->>User: Atualiza UI
+```
+
 ### 1. Criar Superfície
 
 Agente envia:
