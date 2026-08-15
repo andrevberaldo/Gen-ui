@@ -1,4 +1,4 @@
 mkdocs==1.5.3
 mkdocs-material==9.5.3
-mkdocs-offline==1.0.0
 pymdown-extensions==10.5
+Markdown==3.5.1
